@@ -39,13 +39,13 @@
       const btn = document.getElementById("original-btn");
       if (btn) {
         const newId = generateRandomId();
-        btn.id = newId;
-        btn.innerText = "ID Changed to: " + newId;
+        btn.setAttribute("id", newId);
+        // No visual change
       }
     }
   </script>
 </head>
 <body>
-  <button id="original-btn" onclick="changeId()">Click to Change My ID</button>
+  <button id="original-btn" onclick="changeId()">Click Me</button>
 </body>
 </html>
