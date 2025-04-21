@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Healenium Test</title>
+  <script>
+    function changeId() {
+      const btn = document.getElementById("original-btn");
+      if (btn) {
+        btn.id = "changed-btn";
+        btn.innerText = "ID Changed!";
+      }
+    }
+  </script>
+</head>
+<body>
+  <button id="original-btn" onclick="changeId()">Click Me</button>
+</body>
+</html>
