@@ -2,19 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Healenium Test Demo</title>
+  <title>Healenium Locator Test - Enhanced</title>
   <style>
     body {
-      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      background: linear-gradient(to right, #fceabb, #f8b500);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
     }
 
-    button {
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .button-wrapper {
+      margin-bottom: 20px;
+    }
+
+    .fancy-button {
       padding: 20px 40px;
       font-size: 20px;
       background-color: #4CAF50;
@@ -26,26 +37,60 @@
       transition: 0.3s ease;
     }
 
-    button:hover {
+    .fancy-button:hover {
       background-color: #45a049;
     }
-  </style>
-  <script>
-    function generateRandomId() {
-      return "btn-" + Math.random().toString(36).substring(2, 10);
+
+    .info-box {
+      font-size: 18px;
+      background-color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    function changeId() {
-      const btn = document.getElementById("original-btn");
-      if (btn) {
-        const newId = generateRandomId();
-        btn.id = newId;
-        btn.innerText = "ID Changed to: " + newId;
-      }
+    .message-container {
+      margin-top: 15px;
+      color: #444;
+      font-weight: bold;
+    }
+  </style>
+
+  <script>
+    function generateRandomId() {
+      return "elem-" + Math.random().toString(36).substring(2, 10);
+    }
+
+    function changeTargetId() {
+      const wrapper = document.querySelector('[data-custom-id="target-container"]');
+      const target = wrapper.querySelector('[data-custom-id="dynamic-text"]');
+      const newId = generateRandomId();
+      target.setAttribute("id", newId);
+
+      const message = document.querySelector('[data-custom-id="status-message"]');
+      message.innerText = `Target element ID changed to: ${newId}`;
     }
   </script>
 </head>
 <body>
-  <button id="original-btn" onclick="changeId()">Click to Change My ID</button>
+
+  <div class="wrapper">
+    <div class="button-wrapper" data-custom-id="button-area">
+      <div>
+        <button class="fancy-button" data-custom-id="trigger-button" onclick="changeTargetId()">Click Me</button>
+      </div>
+    </div>
+
+    <div data-custom-id="target-container">
+      <div>
+        <span class="info-box" data-custom-id="dynamic-text">This is the target element.</span>
+      </div>
+    </div>
+
+    <div class="message-container" data-custom-id="status-message-wrapper">
+      <p data-custom-id="status-message"></p>
+    </div>
+  </div>
+
 </body>
 </html>
